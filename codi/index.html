@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joc QUIZ</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <main class="contenedor">
+
+        <h1>JOC QUIZ</h1>
+
+        <!-- MENÚ PRINCIPAL -->
+        <section id="menu">
+            <h2>Menú principal</h2>
+
+            <button onclick="mostrarPantalla('categorias')">
+                Jugar
+            </button>
+
+            <button onclick="mostrarPantalla('instrucciones')">
+                Instrucciones
+            </button>
+        </section>
+
+        <!-- SUBMENÚ DE CATEGORÍAS -->
+        <section id="categorias" class="oculto">
+            <h2>Selecciona una categoría</h2>
+
+            <button onclick="iniciarJuego('programacion')">
+                Programación
+            </button>
+
+            <button onclick="iniciarJuego('videojuegos')">
+                Videojuegos
+            </button>
+
+            <button onclick="iniciarJuego('cultura')">
+                Cultura general
+            </button>
+
+            <button onclick="mostrarPantalla('menu')">
+                Volver
+            </button>
+        </section>
+
+        <!-- INSTRUCCIONES -->
+        <section id="instrucciones" class="oculto">
+            <h2>Instrucciones</h2>
+
+            <p>Selecciona una categoría y responde a las preguntas.</p>
+            <p>Cada respuesta correcta suma un punto.</p>
+
+            <button onclick="mostrarPantalla('menu')">
+                Volver al menú
+            </button>
+        </section>
+
+        <!-- PREGUNTAS -->
+        <section id="juego" class="oculto">
+            <p id="progreso"></p>
+
+            <h2 id="textoPregunta"></h2>
+
+            <div id="respuestas"></div>
+
+            <p id="mensaje"></p>
+
+            <button id="btnSiguiente"
+                    class="oculto"
+                    onclick="siguientePregunta()">
+                Siguiente pregunta
+            </button>
+        </section>
+
+        <!-- RESULTADOS -->
+        <section id="resultados" class="oculto">
+            <h2>Resultados finales</h2>
+
+            <p id="puntuacion"></p>
+
+            <button onclick="mostrarPantalla('categorias')">
+                Volver a jugar
+            </button>
+
+            <button onclick="mostrarPantalla('menu')">
+                Menú principal
+            </button>
+        </section>
+
+    </main>
+
+</body>
+</html>
