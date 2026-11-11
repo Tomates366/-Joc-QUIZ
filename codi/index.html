@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QUIZ MASTER</title>
+
+    <!-- Tipografías del diseño de Figma -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Lógica del juego -->
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+
+    <main class="contenedor">
+
+        <!-- =====================================
+             CABECERA GENERAL
+        ====================================== -->
+
+        <header class="cabecera">
+
+            <!-- Configuración -->
+            <button
+                id="btnConfiguracion"
+                type="button"
+                aria-label="Configuración"
+                title="Configuración">
+                ⚙
+            </button>
+
+            <!-- Nombre del juego -->
+            <div class="titulo-juego">
+
+                <h1>QUIZ MASTER</h1>
+
+                <p>
+                    Responde, consigue puntos y mejora
+                </p>
+
+            </div>
+
+            <!-- Marcador siempre visible -->
+            <div class="marcador" aria-live="polite">
+
+                <span aria-hidden="true">🪙</span>
+
+                <span id="puntos">125,50</span>
+
+                <span>puntos</span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             MENÚ PRINCIPAL
+        ====================================== -->
+
+        <section id="menu">
+
+            <!-- Botón jugar -->
+            <button
+                class="btn-jugar"
+                type="button"
+                onclick="iniciarJuego()">
+
+                <strong>❓ JUGAR</strong>
+
+                <span>
+                    Responde preguntas y consigue puntos
+                </span>
+
+            </button>
+
+
+            <!-- Progreso general -->
+            <div class="tarjeta-progreso">
+
+                <h2>Progreso actual</h2>
+
+                <p>
+                    7 de 10 preguntas correctas
+                </p>
+
+                <div class="barra-progreso">
+
+                    <div class="barra-completada"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PANTALLA DE PREGUNTAS
+        ====================================== -->
+
+        <section id="juego" class="oculto">
+
+            <div class="tarjeta-pregunta">
+
+                <!-- Número de pregunta -->
+                <p id="progreso">
+                    Pregunta 1 de 10
+                </p>
+
+                <!-- Enunciado -->
+                <h2 id="textoPregunta">
+                    ¿Cuál es la capital de Francia?
+                </h2>
+
+
+                <!-- Respuestas dinámicas -->
+                <div id="respuestas">
+
+                    <!--
+                        JavaScript generará aquí
+                        los botones de respuesta.
+
+                        Ejemplo:
+                        A. Madrid
+                        B. París
+                        C. Roma
+                        D. Lisboa
+                    -->
+
+                </div>
+
+
+                <!-- Mensaje correcto / incorrecto -->
+                <p id="mensaje" aria-live="polite"></p>
+
+
+                <!-- Botón siguiente pregunta -->
+                <button
+                    id="btnSiguiente"
+                    class="btn-siguiente oculto"
+                    type="button"
+                    onclick="siguientePregunta()">
+
+                    SIGUIENTE PREGUNTA
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PANTALLA DE LOGROS
+        ====================================== -->
+
+        <section id="logros" class="oculto">
+
+            <h2>🏆 LOGROS</h2>
+
+            <p>
+                Completa retos para conseguir
+                mejoras permanentes
+            </p>
+
+
+            <!-- Tarjetas generadas por JavaScript -->
+            <div id="listaLogros">
+
+                <!--
+                    LOGRO 1: PRINCIPIANTE
+
+                    Responde correctamente
+                    10 preguntas.
+
+                    Recompensa:
+                    +5 % de puntos.
+
+
+                    LOGRO 2: RACHA PERFECTA
+
+                    Responde correctamente
+                    5 preguntas seguidas.
+
+                    Recompensa:
+                    Una ayuda adicional.
+
+
+                    LOGRO 3: EXPERTO
+
+                    Responde correctamente
+                    100 preguntas.
+
+                    Recompensa:
+                    +10 % de puntos.
+                -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PANTALLA DE TIENDA
+        ====================================== -->
+
+        <section id="tienda" class="oculto">
+
+            <h2>🛒 TIENDA</h2>
+
+            <p>
+                Gasta tus puntos en mejoras temporales
+            </p>
+
+
+            <!-- Productos generados por JavaScript -->
+            <div id="listaTienda">
+
+                <!--
+                    PRODUCTO 1: PUNTOS DOBLES
+
+                    Duplica los puntos durante
+                    las próximas 5 preguntas.
+
+                    Precio:
+                    25,00 puntos.
+
+
+                    PRODUCTO 2: ELIMINAR RESPUESTA
+
+                    Elimina una respuesta
+                    incorrecta de la próxima pregunta.
+
+                    Precio:
+                    10,00 puntos.
+
+
+                    PRODUCTO 3: SEGUNDA OPORTUNIDAD
+
+                    Permite responder de nuevo
+                    una pregunta fallada.
+
+                    Precio:
+                    20,00 puntos.
+                -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PANTALLA DE RESULTADOS
+        ====================================== -->
+
+        <section id="resultados" class="oculto">
+
+            <h2>🏆 RESULTADOS FINALES</h2>
+
+            <!-- Puntuación de la partida -->
+            <p id="puntuacion">
+                Has acertado 0 preguntas.
+            </p>
+
+
+            <!-- Reiniciar la partida -->
+            <button
+                type="button"
+                onclick="iniciarJuego()">
+
+                🔄 VOLVER A JUGAR
+
+            </button>
+
+
+            <!-- Regresar al menú -->
+            <button
+                type="button"
+                onclick="mostrarPantalla('menu')">
+
+                🏠 MENÚ PRINCIPAL
+
+            </button>
+
+        </section>
+
+
+        <!-- =====================================
+             MENÚ INFERIOR DE NAVEGACIÓN
+        ====================================== -->
+
+        <nav
+            class="menu-inferior"
+            aria-label="Navegación principal">
+
+            <!-- Preguntas -->
+            <button
+                id="navPreguntas"
+                type="button"
+                aria-pressed="false"
+                onclick="mostrarPantalla('juego')">
+
+                ❓ PREGUNTAS
+
+            </button>
+
+
+            <!-- Logros -->
+            <button
+                id="navLogros"
+                type="button"
+                aria-pressed="false"
+                onclick="mostrarPantalla('logros')">
+
+                🏆 LOGROS
+
+            </button>
+
+
+            <!-- Tienda -->
+            <button
+                id="navTienda"
+                type="button"
+                aria-pressed="false"
+                onclick="mostrarPantalla('tienda')">
+
+                🛒 TIENDA
+
+            </button>
+
+        </nav>
+
+    </main>
+
+</body>
+
+</html>
