@@ -4,77 +4,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joc QUIZ</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
+    <title>Quiz Master</title>
 
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
     <main class="contenedor">
 
-        <h1>JOC QUIZ</h1>
+        <!-- CABECERA -->
+        <header class="cabecera">
+            <button id="btnConfiguracion" type="button" aria-label="Configuración">
+                ⚙
+            </button>
+
+            <div class="titulo-juego">
+                <h1>QUIZ MASTER</h1>
+                <p>Responde, consigue puntos y mejora</p>
+            </div>
+
+            <div class="marcador">
+                🪙 <span id="puntos">125,50</span> puntos
+            </div>
+        </header>
 
         <!-- MENÚ PRINCIPAL -->
         <section id="menu">
-            <h2>Menú principal</h2>
-
-            <button onclick="mostrarPantalla('categorias')">
-                Jugar
+            <button class="btn-jugar"
+                    onclick="mostrarPantalla('juego')">
+                <strong>JUGAR</strong>
+                <span>Responde preguntas y consigue puntos</span>
             </button>
 
-            <button onclick="mostrarPantalla('instrucciones')">
-                Instrucciones
-            </button>
+            <div class="tarjeta-progreso">
+                <h2>Progreso actual</h2>
+                <p>7 de 10 preguntas correctas</p>
+                <div class="barra-progreso">
+                    <div class="barra-completada"></div>
+                </div>
+            </div>
         </section>
 
-        <!-- SUBMENÚ DE CATEGORÍAS -->
-        <section id="categorias" class="oculto">
-            <h2>Selecciona una categoría</h2>
-
-            <button onclick="iniciarJuego('programacion')">
-                Programación
-            </button>
-
-            <button onclick="iniciarJuego('videojuegos')">
-                Videojuegos
-            </button>
-
-            <button onclick="iniciarJuego('cultura')">
-                Cultura general
-            </button>
-
-            <button onclick="mostrarPantalla('menu')">
-                Volver
-            </button>
-        </section>
-
-        <!-- INSTRUCCIONES -->
-        <section id="instrucciones" class="oculto">
-            <h2>Instrucciones</h2>
-
-            <p>Selecciona una categoría y responde a las preguntas.</p>
-            <p>Cada respuesta correcta suma un punto.</p>
-
-            <button onclick="mostrarPantalla('menu')">
-                Volver al menú
-            </button>
-        </section>
-
-        <!-- PREGUNTAS -->
+        <!-- PANTALLA DE PREGUNTAS -->
         <section id="juego" class="oculto">
-            <p id="progreso"></p>
+            <div class="tarjeta-pregunta">
 
-            <h2 id="textoPregunta"></h2>
+                <p id="progreso">Pregunta 1 de 10</p>
 
-            <div id="respuestas"></div>
+                <h2 id="textoPregunta">
+                    ¿Cuál es la capital de Francia?
+                </h2>
 
-            <p id="mensaje"></p>
+                <div id="respuestas">
+                    <!-- JavaScript creará los botones -->
+                </div>
 
-            <button id="btnSiguiente"
-                    class="oculto"
-                    onclick="siguientePregunta()">
-                Siguiente pregunta
-            </button>
+                <p id="mensaje" aria-live="polite"></p>
+
+                <button id="btnSiguiente"
+                        class="btn-siguiente oculto"
+                        onclick="siguientePregunta()">
+                    SIGUIENTE PREGUNTA
+                </button>
+            </div>
+        </section>
+
+        <!-- PANTALLA DE LOGROS -->
+        <section id="logros" class="oculto">
+            <h2>LOGROS</h2>
+            <p>Completa retos para conseguir mejoras permanentes</p>
+
+            <div id="listaLogros">
+                <!-- Aquí se añadirán las tarjetas de logros -->
+            </div>
+        </section>
+
+        <!-- PANTALLA DE TIENDA -->
+        <section id="tienda" class="oculto">
+            <h2>TIENDA</h2>
+            <p>Gasta tus puntos en mejoras temporales</p>
+
+            <div id="listaTienda">
+                <!-- Aquí se añadirán las tarjetas de la tienda -->
+            </div>
         </section>
 
         <!-- RESULTADOS -->
@@ -83,7 +96,7 @@
 
             <p id="puntuacion"></p>
 
-            <button onclick="mostrarPantalla('categorias')">
+            <button onclick="iniciarJuego()">
                 Volver a jugar
             </button>
 
@@ -92,7 +105,24 @@
             </button>
         </section>
 
-    </main>
+        <!-- MENÚ INFERIOR -->
+        <nav class="menu-inferior" aria-label="Navegación principal">
+            <button id="navPreguntas"
+                    onclick="mostrarPantalla('juego')">
+                ❓ PREGUNTAS
+            </button>
 
+            <button id="navLogros"
+                    onclick="mostrarPantalla('logros')">
+                🏆 LOGROS
+            </button>
+
+            <button id="navTienda"
+                    onclick="mostrarPantalla('tienda')">
+                🛒 TIENDA
+            </button>
+        </nav>
+
+    </main>
 </body>
 </html>
