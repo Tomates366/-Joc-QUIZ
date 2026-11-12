@@ -18,3 +18,11 @@ Se crea un projecto en github
 * Pau: Dissenyador del apartado visual
 * Santi: Encargado de assignar tareas
 * Moseab: Crear codigo
+
+## Mokup
+Imatges del mokup
+![interacciones](/captures/Primer%20seguiment/mokup/interacciones.png)
+![logros](/captures/Primer%20seguiment/mokup/logros.png)
+![menu principal](/captures/Primer%20seguiment/mokup/menu_principal.png)
+![preguntas](/captures/Primer%20seguiment/mokup/preguntas.png)
+![tienda](/captures/Primer%20seguiment/mokup/tienda.png)
