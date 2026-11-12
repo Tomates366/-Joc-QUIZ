@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Pantalla inicial -->
+    <section id="inicio">
+        <h1>QUIZ MASTER</h1>
+
+        <h2>Selecciona una categoría</h2>
+
+        <button onclick="iniciarJuego('programacion')">
+            Programación
+        </button>
+
+        <button onclick="iniciarJuego('videojuegos')">
+            Videojuegos
+        </button>
+
+        <button onclick="iniciarJuego('cultura')">
+            Cultura General
+        </button>
+    </section>
+
+    <!-- Juego -->
+    <section id="quiz" class="oculto">
+
+        <div id="info">
+            <span>Puntos: <span id="puntos">0</span></span>
+            <span>Tiempo: <span id="tiempo">20</span></span>
+        </div>
+
+        <h2 id="pregunta"></h2>
+
+        <div id="respuestas"></div>
+
+    </section>
+
+    <!-- Resultados -->
+    <section id="resultado" class="oculto">
+
+        <h2>Partida finalizada</h2>
+
+        <p id="textoResultado"></p>
+
+        <button onclick="reiniciarJuego()">
+            Volver a jugar
+        </button>
+
+    </section>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
