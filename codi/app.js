@@ -163,6 +163,67 @@ function iniciarJuego(categoria = null) {
     mostrarPregunta();
 }
 
+// SISTEMA DE TIEMPO
+
+let tiempoRestante = 20;
+let temporizador = null;
+const TIEMPO_MAXIMO = 20;
+
+// =========================================
+// FUNCIONES DEL TEMPORIZADOR
+// =========================================
+
+function iniciarTemporizador() {
+    clearInterval(temporizador);
+    tiempoRestante = TIEMPO_MAXIMO;
+    actualizarTiempo();
+
+    temporizador = setInterval(() => {
+        tiempoRestante--;
+        actualizarTiempo();
+
+        if (tiempoRestante <= 0) {
+            comprobarTiempoAgotado();
+        }
+    }, 1000);
+}
+
+function actualizarTiempo() {
+    const elemento = document.getElementById("tiempo");
+
+    if (!elemento) return;
+
+    elemento.textContent = tiempoRestante + "s";
+
+    elemento.classList.toggle(
+        "tiempo-bajo",
+        tiempoRestante <= 5
+    );
+}
+
+function comprobarTiempoAgotado() {
+    if (respondida) return;
+
+    clearInterval(temporizador);
+    respondida = true;
+    rachaActual = 0;
+
+    const pregunta = preguntasActuales[indicePregunta];
+    const botones = document.querySelectorAll("#respuestas button");
+
+    botones.forEach(boton => boton.disabled = true);
+
+    botones[pregunta.correcta].classList.add("correcta");
+
+    document.getElementById("mensaje").textContent =
+        "¡Tiempo agotado!";
+
+    document.getElementById("btnSiguiente")
+        .classList.remove("oculto");
+
+    actualizarMarcador();
+}
+
 // =========================================
 // MOSTRAR PREGUNTA
 // =========================================
@@ -205,7 +266,7 @@ function mostrarPregunta() {
         contenedor.appendChild(boton);
     });
 
-    // Aplicar ayuda para eliminar una respuesta
+        // Aplicar ayuda para eliminar una respuesta
     if (eliminarDisponible > 0 || ayudaExtra) {
         const incorrecta = pregunta.opciones.findIndex(
             (_, i) => i !== pregunta.correcta
@@ -220,6 +281,9 @@ function mostrarPregunta() {
             eliminarDisponible--;
         }
     }
+
+    // Iniciar el temporizador en TODAS las preguntas
+    iniciarTemporizador();
 }
 
 // =========================================
@@ -231,6 +295,7 @@ function comprobarRespuesta(indice) {
     if (respondida) {
         return;
     }
+    
 
     const pregunta = preguntasActuales[indicePregunta];
     const botones = document.querySelectorAll(
@@ -299,6 +364,7 @@ function comprobarRespuesta(indice) {
         mensaje.textContent =
             "Respuesta incorrecta.";
     }
+    clearInterval(temporizador);
 
     botones.forEach(boton => {
         boton.disabled = true;

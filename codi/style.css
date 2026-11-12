@@ -460,3 +460,28 @@ button:focus-visible {
         font-size: 12px;
     }
 }
+
+/* TEMPORIZADOR */
+.temporizador {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+    color: white;
+}
+
+/* Cuando quedan 5 segundos o menos */
+.tiempo-bajo {
+    color: #ff4444;
+    animation: pulsar 0.7s infinite alternate;
+}
+
+/* Animación de aviso */
+@keyframes pulsar {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.15);
+    }
+}
